@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -13,18 +13,20 @@
 
 </head>
 
-<body onload="initialize()">
+<body>
   <header>
     <h1> Salmon Cookies</h1>
     <nav>
-      <ul>
-        <li> <a href= "index.html"> Home </a></li>
-        </li>
-      </ul>
-    </nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sales.html">Sales Page</a></li>
+        </ul>
+      </nav>
   </header>
   <main>
     <h2></h2>
+    <img src="images/salmon.png" height="200px" width="450px"/>
+
     <section id='container'>
             <table id = 'salesTable' class = "customers">
                 <thead>
@@ -47,9 +49,7 @@
                 </thead>
             </table>
      
-        <img src="images/salmon.png" />
-        <button onclick="displayAvg()">Show average times and cookies</button>
-
+       
     </section>
  
     
@@ -57,8 +57,9 @@
   </main>
  
   <footer>
-    <script src="js/app.js"></script>  
+   
   </footer>
+  <script src="js/app.js"></script>  
 </body>
 
 </html>
