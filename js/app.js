@@ -102,10 +102,35 @@ let limaCookie={
       }
     },
 
-
-
-
 };
+
+// add li to display lists
+
+
+function buildCookieLocations(place) {
+  // Use the document object to create an article element
+  let article = document.createElement("article");
+  let h2 = document.createElement("h2");
+  h2.innerText = place.name;
+  article.appendChild(h2);
+  // Add the place as a paragraph
+  let p = document.createElement("p");
+  p.innerText = `Open hours are ${place.hours}:`;
+  article.appendChild(p);
+  // list of hours
+  let ul = document.createElement("ul");
+  for (let i = 0; i < place.hours.length; i++) {
+    let li = document.createElement("li");
+    li.innerText = place.hours[i];
+    ul.appendChild(li);
+  }
+
+
+
+
+
+
+
 
 /**
  *getting a random amount of customers
@@ -118,9 +143,8 @@ function getRandomCustomer(min, max) {
    return Math.floor(Math.random() * (max - min) + min);
   }
 }
+}
 
-
-// add li to display lists
 
 
 
