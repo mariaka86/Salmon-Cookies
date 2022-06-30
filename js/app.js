@@ -33,16 +33,16 @@ function hourlyStoreTotalFooter(){
 
 //step 1
 let storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
-let cookiesTotalHour =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-var storePlaces;// an array of locations
+let cookiesTotalHour =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
+let storePlaces;// an array of locations
 
 //step 2 Constructer Function
 /**
- * 
+ *
  * @param {string} storeLocation - this is the name of a city
- * @param {number} minimumCust 
- * @param {number} maximumCust 
- * @param {number} avgCookPerCust 
+ * @param {number} minimumCust
+ * @param {number} maximumCust
+ * @param {number} avgCookPerCust
  */
 function Store(storeLocation , minimumCust, maximumCust, avgCookPerCust){
   this.storeLocation = storeLocation;
@@ -66,12 +66,61 @@ Store.prototype.numOfCookiesPerHour = function(){
 Store.prototype.getRandomCustomersPerHour= function(){
   return Math.ceil(Math.random()* (this.maxCust- this.minCust)*this.minCust);
 };// end constructor
+function initialize() {
+  console.log('In initialize()');
+  //stores that can cause the old ones to be cleared out?
+  storePlaces =[];
+
+  render(storePlaces);
+  // finding the survey form id in survey html, adding submit button which comes with event listener
+  let form = document.getElementById('storeForm');
+  form.addEventListener('submit', allowSubmit);
+}
+// stop submit button from submitting
+function allowSubmit(evt){
+  evt.preventDefault();
+  // retrieving form id's and connecting them to javascript counteparts.
+  let storeLocation = document.getElementById ('storeLocation').value;
+  let minimumCust = document.getElementById('minimumCust').value;
+  let maximumCust = document.getElementById('maximumCust').value;
+  let avgCookPerCust = document.getElementById ('avgCookPerCust').value;
+
+  let storePlaces  = new Store(storeLocation , minimumCust, maximumCust, avgCookPerCust);
+  // adding new stores to table
+  storePlaces.push(storePlaces);
+}
 
 
-storePlaces =[];
-storePlaces. push(new Store ('Bengali',15 ,27,4));
-storePlaces.push(new Store('Singapore',12,60, 3));
-storePlaces.push (new Store( 'Japan', 16,35,2));
+
+
+
+// render survey function
+function render(storePlaces){
+  let locationTable = document.getElementById('locationTable');
+  // clears out old and reloads new records
+  locationTable. innerHTML =' ';
+  // draws records into empty string
+
+  // loop through storeplaces
+  for (let i = 0; i< storePlaces.length; i++) {
+    let storePlaces = storePlaces[i];
+    let tr = document.createElement('tr');
+    let td = document.createElement('td');
+    td.innerText = storePlaces.storeLocation;
+    tr.appendChild(td);
+    td = document.createElement('td');
+    td.innerText = storePlaces.minimumCust;
+    tr.appendChild(td);
+    td = document.createElement('td');
+    td.innerText = storePlaces.maximumCust.join(', ');
+    tr.appendChild(td);
+    td = document.createElement('td');
+    td.innerText = storePlaces.avgCookPerCust;
+    tr.appendChild(td);
+  }
+}
+//end
+
 
 
 
@@ -81,6 +130,7 @@ Store.prototype.render = function(){
   let tbody = document.getElementById ('dataOfStore');
   let tr =document.createElement('tr');
   tbody.appendChild (tr);
+
   // adding table data using store locations
   let tdStoreLocation = document.createElement('td');
   tdStoreLocation.textContent = this.storeLocation;
@@ -101,6 +151,50 @@ Store.prototype.render = function(){
   cookieTotals.textContent = cookieTotal;
   tr. appendChild(cookieTotals);
 };//end render()
+
+
+// Add Button Function
+
+function addLocation() {
+  console.log('In addLocation()');
+  let good = true; // flags whether the form input is good
+  let storeLocation = document.getElementById('storeLocation').value.trim();
+  if (storeLocation === '') {
+    // Name is required!
+    good = false;
+    let span = document.getElementById('storeLocationError');
+    span.innerText = 'Location cannot be blank!';
+    let br = document.createElement('br');
+    span.appendChild(br);
+  }
+  let minimumCust = document.getElementById('minimum Cust').value();
+  minimumCust = minimumCust.trim();
+  let maximumCust = document.getElementById('maximum Customer').checked;
+  let avgCookPerCust = document.getElementById('average cookies per customer').checked;
+  if (good) {
+    let storePlaces= new Store(storeLocation , minimumCust, maximumCust, avgCookPerCust);
+    storePlaces.push(storePlaces);
+    render(storePlaces);
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -132,15 +226,5 @@ let allStores = [seattle,tokyo,dubai,paris,lima];
 console.log('Our Stores', allStores);
 
 Store.renderAll();
-
-
-
-
-
-
-
-
-
-
 
 
