@@ -7,27 +7,27 @@ console.log('app is connected');
 
 function hourlyStoreTotalFooter(){
   let cookieTotal =0;
-  let tFoot = document.getElementById('tableFooter');}
-let tr= document.createElement('tr');
-tFoot.appendChild(tr);
+  let tFoot = document.getElementById('tableFooter');
+  let tr= document.createElement('tr');
+  tFoot.appendChild(tr);
 
-let tdTitle=document.createElement('td');
-tdTitle.textContent= 'Totals';
-tr.appendChild(tdTitle);
+  let tdTitle=document.createElement('td');
+  tdTitle.textContent= 'Totals';
+  tr.appendChild(tdTitle);
 
 
-for(let i =0; i < cookiesTotalHour.length; i++) {
-  let cookiesForThisHour = cookiesTotalHour[i];
-  cookieTotal += cookiesForThisHour;
-  let cookieHourlyTotals=  document.createdElement('td');
-  cookieHourlyTotals.textContent = cookiesForThisHour;
-  tr.appendChild(cookieHourlyData);
+  for(let i =0; i < cookiesTotalHour.length; i++) {
+    let cookiesForThisHour = cookiesTotalHour[i];
+    cookieTotal += cookiesForThisHour;
+    let cookieHourlyTotals =  document.createElement('td');
+    cookieHourlyTotals.textContent = cookiesForThisHour;
+    tr.appendChild(cookieHourlyData);
+  }
+
+  let cookieTotals = document.createElement('td');
+  cookieTotals.textContent = cookieTotal;
+  tr.appendChild(cookieTotals);
 }
-
-let cookieTotals = document.createElement('td');
-cookieTotals.textContent = cookieTotal;
-tr.appendChild(cookieTotals);
-
 
 
 
