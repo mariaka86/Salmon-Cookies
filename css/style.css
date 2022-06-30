@@ -1,3 +1,74 @@
 h1{
     font-family: 'League Gothic', sans-serif;
 }
+* {
+    clear: both;
+    box-sizing: border-box;
+}
+
+body {
+   
+}
+
+main {
+    width: 960px;
+    margin: 0 auto;
+}
+
+ main h2 {
+     float: right; 
+     padding-right: 250px;
+}
+
+ p {
+    float:right;
+    width:50%;
+    margin-top: -412px;
+    
+}
+
+/* button{
+position:absolute;
+margin-top: 300px;
+width:10%;
+} */
+
+
+header  {
+width:100%;
+/* display: flex; */
+/* justify-content:space-between; */
+}
+
+
+nav {
+    background-color: rgb(53, 52, 52);
+    color:rgb(65, 125, 177);   
+}
+
+
+nav li {
+display: inline-block;
+text-align: center;
+border: 3px solid rgb(20, 20, 20);
+margin:50px;
+} 
+
+/* main img {
+ padding: 15px;
+ } */
+
+main  img {
+    margin-bottom: 30px;
+}
+
+
+section img:nth-child(2){
+    margin-left: 26px;
+    margin-right:26px;
+}
+
+footer {
+height:50px;
+background-color:rgb(4, 5, 5);
+}

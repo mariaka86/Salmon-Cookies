@@ -8,26 +8,35 @@ console.log('app is connected');
 // The minimum number of customers per hour.
 // The maximum number of customers per hour.
 // The average number of cookies purchased per customer.
+//step 1
 let storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
+let storeSites =[];
 
+
+
+
+//step 2
 function Store(storeLocation , minimumCust, maximumCust, avgCookPerCust){
   this.name = storeLocation;
   this.minCust = minimumCust;
   this.maxCust = maximumCust;
   this.avgCookPerCust = avgCookPerCust;
   this.averageCookiesPerHour = [];
+  this.cookiesSold =[];
   this.TotDailyCooks = 0;
+  Store.storeHours.push(this);
 }
 
+
 Store.prototype.getHourlySales = function(){
-  return Math.ceil(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+  return Math.ceil(Math.randomCustomer() * (this.maxCust - this.minCust) + this.minCust);
   
 };
 
-// function randomCustomer(minCust, maxCust){
-//   return Math.floor (Math.random() * (maxCust - minCust +1) + minCust);
+function randomCustomer(minCust, maxCust){
+  return Math.floor (Math.random() * (maxCust - minCust +1) + minCust);
 
-// }
+}
 
 // Store.prototype.getAverCooks= function(){
 //   let averCooks= Math.floor((Math.random() * this.hours.length));
@@ -131,7 +140,8 @@ Store.prototype.render = function(){
 
 
 
-
+//Step 3
+Store.storeSites= [];
 
 let seattle = new Store('Seattle', 23, 65, 6.3);
 
