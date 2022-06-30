@@ -5,9 +5,32 @@
 'use strict';
 console.log('app is connected');
 
-// The minimum number of customers per hour.
-// The maximum number of customers per hour.
-// The average number of cookies purchased per customer.
+function hourlyStoreTotalFooter(){
+  let cookieTotal =0;
+  let tFoot = document.getElementById('tableFooter');}
+let tr= document.createElement('tr');
+tFoot.appendChild(tr);
+
+let tdTitle=document.createElement('td');
+tdTitle.textContent= 'Totals';
+tr.appendChild(tdTitle);
+
+
+for(let i =0; i < cookiesTotalHour.length; i++) {
+  let cookiesForThisHour = cookiesTotalHour[i];
+  cookieTotal += cookiesForThisHour;
+  let cookieHourlyTotals=  document.createdElement('td');
+  cookieHourlyTotals.textContent = cookiesForThisHour;
+  tr.appendChild(cookieHourlyData);
+}
+
+let cookieTotals = document.createElement('td');
+cookieTotals.textContent = cookieTotal;
+tr.appendChild(cookieTotals);
+
+
+
+
 //step 1
 let storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
 let cookiesTotalHour =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
@@ -33,8 +56,6 @@ Store.prototype.numOfCookiesPerHour = function(){
 };
 
 
-
-
 Store.prototype.getRandomCustomersPerHour= function(){
   return Math.ceil(Math.random()* (this.maxCust- this.minCust)*this.minCust);
 };
@@ -57,7 +78,7 @@ Store.prototype.render = function(){
 
 
   // store hours
-  for(let i = 0; i < this.storeHours.length; i++){
+  for(let i = 0; i < storeHours.length; i++){
     let cookiesForThisHour = this.cookiesSold[i];
     cookiesTotalHour[i] += cookiesForThisHour;
     cookieTotal += cookiesForThisHour;
@@ -68,7 +89,7 @@ Store.prototype.render = function(){
   }
   let cookieTotals = document.createElement('td');
   cookieTotals.textContent = cookieTotal;
-  tr. appendChild(cookieTotal);
+  tr. appendChild(cookieTotals);
 };
 
 
@@ -77,6 +98,8 @@ Store.renderAll= function(){
   for(let i = 0; i < Store.storeSites.length; i++){
     Store.storeSites[i].render();
   }
+
+  hourlyStoreTotalFooter();
 };
 
 
