@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Salmon Cookies</title>
+  <link href="css/style.css" type="text/css" rel="stylesheet" />
+  
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet">
+
+</head>
+<body onload="initialize()">
+
+<body>
+  <header>
+    <h1> Salmon Cookies</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sales.html">Sales Page</a></li>
+        <li> <a href = "hours.html"> Hours</a></li>
+        <li> <a href = "contactus.html"> Contact Us</a></li>
+        <li> <a href = "surveyform.html">Sites</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h2> Location Data</h2>
+    <p> You can visit us here</p>
+    <table>
+        <thead>
+        <tr>
+            <th> Location </th>
+            <th>Mininum amount of customers</th>
+            <th> Maximum amount of customers</th>
+            <th> Average</th>
+            <th>Total</th> 
+        </tr>
+        </thead>
+        <tbody id = "locationTable"></tbody>
+    </table>
+          <section>
+              <form id = "storeForm">
+                <label for = 'storeLocation'>Location *</label><br/>
+                <input type="text" id="storeLocation" name="storeLocation" required/> <br/>
+
+                <label for = "minimumCust">Minimum amount of customer that visit</label> <br/>
+                <input type=" text" id=" minimumCust" name="minimumCust" /> <br/>
+
+                <label for = "maximumCust">Maximum amount of customer that visit</label> <br/>
+                <input type=" text" id=" maximumCust" name="maximumCust" /> <br/>
+
+                <label for = "avgCookPerCust">The average amount of cookies per customer</label> <br/>
+                <input type=" text" id=" avgCookPerCustt" name="avgCookPerCust" /> <br/>
+                
+
+              </form>
+
+
+
+
+
+
+          </section>
+  
+    </div>
+    <button>Show average times and cookies</button>
+  </main>
+  <footer>
+    <script src="js/app.js"></script>   
+  </footer>
+  
+</body>
+
+</html>

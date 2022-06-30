@@ -21,7 +21,7 @@ function hourlyStoreTotalFooter(){
     cookieTotal += cookiesForThisHour;
     let cookieHourlyTotals =  document.createElement('td');
     cookieHourlyTotals.textContent = cookiesForThisHour;
-    tr.appendChild(cookieHourlyData);
+    tr.appendChild(cookieHourlyTotals);// find equivalent value
   }
 
   let cookieTotals = document.createElement('td');
@@ -34,11 +34,18 @@ function hourlyStoreTotalFooter(){
 //step 1
 let storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
 let cookiesTotalHour =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var storePlaces;// an array of locations
 
-
-//step 2
+//step 2 Constructer Function
+/**
+ * 
+ * @param {string} storeLocation - this is the name of a city
+ * @param {number} minimumCust 
+ * @param {number} maximumCust 
+ * @param {number} avgCookPerCust 
+ */
 function Store(storeLocation , minimumCust, maximumCust, avgCookPerCust){
-  this.name = storeLocation;
+  this.storeLocation = storeLocation;
   this.minCust = minimumCust;
   this.maxCust = maximumCust;
   this.avgCookPerCust = avgCookPerCust;
@@ -58,24 +65,27 @@ Store.prototype.numOfCookiesPerHour = function(){
 
 Store.prototype.getRandomCustomersPerHour= function(){
   return Math.ceil(Math.random()* (this.maxCust- this.minCust)*this.minCust);
-};
+};// end constructor
 
 
-// finding the 'container' in sales.html
+storePlaces =[];
+storePlaces. push(new Store ('Bengali',15 ,27,4));
+storePlaces.push(new Store('Singapore',12,60, 3));
+storePlaces.push (new Store( 'Japan', 16,35,2));
+
+
+
+// Render Function
 Store.prototype.render = function(){
-
   let cookieTotal= 0;
-
-  // let parentElement = document.getElementById('container');
-  // console.log(parentElement);
   let tbody = document.getElementById ('dataOfStore');
   let tr =document.createElement('tr');
   tbody.appendChild (tr);
   // adding table data using store locations
   let tdStoreLocation = document.createElement('td');
   tdStoreLocation.textContent = this.storeLocation;
+  console.log(this.storeLocation);
   tr.appendChild(tdStoreLocation);
-
 
   // store hours
   for(let i = 0; i < storeHours.length; i++){
@@ -90,7 +100,7 @@ Store.prototype.render = function(){
   let cookieTotals = document.createElement('td');
   cookieTotals.textContent = cookieTotal;
   tr. appendChild(cookieTotals);
-};
+};//end render()
 
 
 
