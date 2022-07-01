@@ -22,13 +22,42 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="sales.html">Sales Page</a></li>
          <li> <a href= "survey.html"> Sites</a></li>
-          <li> <a href = "hours.html"> Hours</a></li>
+          <li> <a href = "aboutus.html"> About Us </a> </li>
         <li> <a href = "contactus.html"> Contact Us</a></li>
         </ul>
       </nav>
   </header>
   <main>
-    <h2></h2>
+    <h2> Location Data</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th> Location </th>
+            
+        </tr>
+        </thead>
+        <tbody id = "locationTable"></tbody>
+    </table>
+          <section>
+              <form id = "storeForm">
+                <label for = 'storeLocation'>Location *</label><br/>
+                <input type="text" id="storeLocation" name="storeLocation" required/> <br/>
+                <span id="storeLocationError" class="errorSpan"></span>
+
+                <label for = "minimumCust">Minimum amount of customer that visit</label> <br/>
+                <input type=" text" id="minimumCust" name="minimumCust" /> <br/>
+
+                <label for = "maximumCust">Maximum amount of customer that visit</label> <br/>
+                <input type=" text" id="maximumCust" name="maximumCust" /> <br/>
+
+                <label for = "avgCookPerCust">The average amount of cookies per customer</label> <br/>
+                <input type=" text" id="avgCookPerCust" name="avgCookPerCust" /> <br/>
+                <input type="submit" value="AddLocation"  /><br />
+
+
+              </form> 
+                
     
     <img src ="images/chinook.jpg"/>
     <section id='container'>

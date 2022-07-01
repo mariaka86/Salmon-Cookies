@@ -116,9 +116,10 @@ function allowSubmit(evt){
   let maximumCust = document.getElementById('maximumCust').value;
   let avgCookPerCust = document.getElementById ('avgCookPerCust').value;
 
-  let storePlaces  = new Store(storeLocation , minimumCust, maximumCust, avgCookPerCust);
+  let storePlace  = new Store(storeLocation , minimumCust, maximumCust, avgCookPerCust);
   // adding new stores to table
-  storePlaces.push(storePlaces);
+  storePlaces.push(storePlace);
+  Store.renderAll();
 }
 
 
@@ -136,19 +137,19 @@ function render(storePlaces){
 
   // loop through storeplaces
   for (let i = 0; i< storePlaces.length; i++){
-    let storePlaces = storePlaces[i];
+    let storePlace = storePlaces[i];
     let tr = document.createElement('tr');
     let td = document.createElement('td');
-    td.innerText = storePlaces.storeLocation;
+    td.innerText = storePlace.storeLocation;
     tr.appendChild(td);
     td = document.createElement('td');
-    td.innerText = storePlaces.minimumCust;
+    td.innerText = storePlace.minimumCust;
     tr.appendChild(td);
     td = document.createElement('td');
-    td.innerText = storePlaces.maximumCust.join(', ');
+    td.innerText = storePlace.maximumCust(', ');
     tr.appendChild(td);
     td = document.createElement('td');
-    td.innerText = storePlaces.avgCookPerCust;
+    td.innerText = storePlace.avgCookPerCust;
     tr.appendChild(td);
   }
 }
@@ -192,7 +193,8 @@ Store.prototype.render = function(){
 /**
  * 
  */
-function addLocation() {
+function addLocation(evt) {
+  evt.preventDefault();
   console.log('In addLocation()');
   let good = true; // flags whether the form input is good
   let storeLocation = document.getElementById('storeLocation').value.trim();
@@ -204,14 +206,14 @@ function addLocation() {
     let br = document.createElement('br');
     span.appendChild(br);
   }
-  let minimumCust = document.getElementById('minimum Cust').value();
+  let minimumCust = document.getElementById('minimumCust').value;
   minimumCust = minimumCust.trim();
-  let maximumCust = document.getElementById('maximum Customer').checked;
-  let avgCookPerCust = document.getElementById('average cookies per customer').checked;
+  let maximumCust = document.getElementById('maximumCustomer');
+  let avgCookPerCust = document.getElementById('average cookies per customer');
   if (good) {
-    let storePlaces= new Store(storeLocation , minimumCust, maximumCust, avgCookPerCust);
-    storePlaces.push(storePlaces);
-    render(storePlaces);
+    let store = new Store(storeLocation , minimumCust, maximumCust, avgCookPerCust);
+    storePlaces.push(store);
+    render(store);
 
   }
 }
@@ -220,6 +222,8 @@ function addLocation() {
  * 
  */
 Store.renderAll= function(){
+  let tbody = document.getElementById ('dataOfStore');
+  tbody.innerHTML= "";
   for(let i = 0; i < Store.storeSites.length; i++){
     Store.storeSites[i].render();
   }
