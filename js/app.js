@@ -4,7 +4,11 @@
 */
 'use strict';
 console.log('app is connected');
+//debugger;
 
+/**
+ * 
+ */
 function hourlyStoreTotalFooter(){
   let cookieTotal =0;
   let tFoot = document.getElementById('tableFooter');
@@ -31,7 +35,7 @@ function hourlyStoreTotalFooter(){
 
 
 
-//step 1
+//step 1 not in a function
 let storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
 let cookiesTotalHour =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
 let storePlaces;// an array of locations
@@ -54,18 +58,30 @@ function Store(storeLocation , minimumCust, maximumCust, avgCookPerCust){
   Store.storeSites.push(this);
 }
 
-Store.storeSites=[];
+Store.storeSites=[];//not in a function
 
+/**
+ * 
+ */
 Store.prototype.numOfCookiesPerHour = function(){
   for(let i=0; i < storeHours.length; i++){
     this.cookiesSold[i]= Math.ceil(this.getRandomCustomersPerHour()* this.avgCookPerCust);
   }
 };
 
-
+/**
+ * 
+ * 
+ */
 Store.prototype.getRandomCustomersPerHour= function(){
   return Math.ceil(Math.random()* (this.maxCust- this.minCust)*this.minCust);
 };// end constructor
+
+
+
+/**
+ * 
+ */
 function initialize() {
   console.log('In initialize()');
   //stores that can cause the old ones to be cleared out?
@@ -75,8 +91,23 @@ function initialize() {
   // finding the survey form id in survey html, adding submit button which comes with event listener
   let form = document.getElementById('storeForm');
   form.addEventListener('submit', allowSubmit);
+  let seattle = new Store('Seattle', 23, 65, 6.3);
+let tokyo = new Store('Tokyo',3,24,1.2 );
+let dubai = new Store('Dubai',11,38,3.7);
+let paris = new Store('Paris',20,38,2.3);
+let lima = new Store('Lima',2,16,4.6);
+let allStores = [seattle,tokyo,dubai,paris,lima];
+console.log('Our Stores', allStores);
+Store.renderAll();
+
 }
+
+
 // stop submit button from submitting
+/**
+ * 
+ * @param {*} evt 
+ */
 function allowSubmit(evt){
   evt.preventDefault();
   // retrieving form id's and connecting them to javascript counteparts.
@@ -95,6 +126,11 @@ function allowSubmit(evt){
 
 
 // render survey function
+
+/**
+ * 
+ * @param {*} storePlaces 
+ */
 function render(storePlaces){
   let locationTable = document.getElementById('locationTable');
   // clears out old and reloads new records
@@ -125,6 +161,10 @@ function render(storePlaces){
 
 
 // Render Function
+
+/**
+ * 
+ */
 Store.prototype.render = function(){
   let cookieTotal= 0;
   let tbody = document.getElementById ('dataOfStore');
@@ -152,9 +192,11 @@ Store.prototype.render = function(){
   tr. appendChild(cookieTotals);
 };//end render()
 
-
 // Add Button Function
 
+/**
+ * 
+ */
 function addLocation() {
   console.log('In addLocation()');
   let good = true; // flags whether the form input is good
@@ -179,25 +221,9 @@ function addLocation() {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * 
+ */
 Store.renderAll= function(){
   for(let i = 0; i < Store.storeSites.length; i++){
     Store.storeSites[i].render();
@@ -205,26 +231,3 @@ Store.renderAll= function(){
 
   hourlyStoreTotalFooter();
 };
-
-
-//Step 3
-
-let seattle = new Store('Seattle', 23, 65, 6.3);
-
-let tokyo = new Store('Tokyo',3,24,1.2 );
-
-let dubai = new Store('Dubai',11,38,3.7);
-
-let paris = new Store('Paris',20,38,2.3);
-
-let lima = new Store('Lima',2,16,4.6);
-
-
-
-
-let allStores = [seattle,tokyo,dubai,paris,lima];
-console.log('Our Stores', allStores);
-
-Store.renderAll();
-
-
