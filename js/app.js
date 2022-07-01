@@ -82,7 +82,7 @@ Store.prototype.getRandomCustomersPerHour= function(){
 /**
  * 
  */
-function initialize() {
+function initialize(){
   console.log('In initialize()');
   //stores that can cause the old ones to be cleared out?
   storePlaces =[];
@@ -92,13 +92,13 @@ function initialize() {
   let form = document.getElementById('storeForm');
   form.addEventListener('submit', allowSubmit);
   let seattle = new Store('Seattle', 23, 65, 6.3);
-let tokyo = new Store('Tokyo',3,24,1.2 );
-let dubai = new Store('Dubai',11,38,3.7);
-let paris = new Store('Paris',20,38,2.3);
-let lima = new Store('Lima',2,16,4.6);
-let allStores = [seattle,tokyo,dubai,paris,lima];
-console.log('Our Stores', allStores);
-Store.renderAll();
+  let tokyo = new Store('Tokyo',3,24,1.2 );
+  let dubai = new Store('Dubai',11,38,3.7);
+  let paris = new Store('Paris',20,38,2.3);
+  let lima = new Store('Lima',2,16,4.6);
+  let allStores = [seattle,tokyo,dubai,paris,lima];
+  console.log('Our Stores', allStores);
+  Store.renderAll();
 
 }
 
@@ -122,9 +122,6 @@ function allowSubmit(evt){
 }
 
 
-
-
-
 // render survey function
 
 /**
@@ -138,7 +135,7 @@ function render(storePlaces){
   // draws records into empty string
 
   // loop through storeplaces
-  for (let i = 0; i< storePlaces.length; i++) {
+  for (let i = 0; i< storePlaces.length; i++){
     let storePlaces = storePlaces[i];
     let tr = document.createElement('tr');
     let td = document.createElement('td');
@@ -156,8 +153,6 @@ function render(storePlaces){
   }
 }
 //end
-
-
 
 
 // Render Function
