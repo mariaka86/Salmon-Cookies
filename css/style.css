@@ -27,7 +27,7 @@ main {
 }
 
  p {
-    
+    font-family: 'League Gothic', sans-serif;
     width:50%;
     
 }
@@ -53,6 +53,7 @@ nav {
 
 
 nav li {
+font-family: 'League Gothic', sans-serif;   
 display: inline-block;
 text-align: center;
 border: 3px solid rgb(20, 20, 20);
