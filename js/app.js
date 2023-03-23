@@ -4,229 +4,201 @@
 */
 'use strict';
 console.log('app is connected');
-//debugger;
-
-/**
- * 
- */
-function hourlyStoreTotalFooter(){
-  let cookieTotal =0;
-  let tFoot = document.getElementById('tableFooter');
-  let tr= document.createElement('tr');
-  tFoot.appendChild(tr);
-
-  let tdTitle=document.createElement('td');
-  tdTitle.textContent= 'Totals';
-  tr.appendChild(tdTitle);
 
 
-  for(let i =0; i < cookiesTotalHour.length; i++) {
-    let cookiesForThisHour = cookiesTotalHour[i];
-    cookieTotal += cookiesForThisHour;
-    let cookieHourlyTotals =  document.createElement('td');
-    cookieHourlyTotals.textContent = cookiesForThisHour;
-    tr.appendChild(cookieHourlyTotals);// find equivalent value
-  }
+let parentElement= document.getElementById('store-location-data');
+let hours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
 
-  let cookieTotals = document.createElement('td');
-  cookieTotals.textContent = cookieTotal;
-  tr.appendChild(cookieTotals);
+
+
+
+
+
+function Store(storeLocation , minCust, maxCust, averageCookies ){
+  this.storeLocation = storeLocation;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.averageCookies= averageCookies;
+  this.totalDailyCookies = 0;
+  this.cookiesPerHour = [];
+  // Store.storeSites.push(this);
+}
+
+
+function getRandomCustomersPerHour(minCust,maxCust){
+  return Math.ceil(Math.random()* (maxCust- minCust)+minCust);
 }
 
 
 
-//step 1 not in a function
-let storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
-let cookiesTotalHour =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
-let storePlaces;// an array of locations
+Store.prototype.cookiesBought = function(){
+  for(let i=0; i < hours.length; i++){
+    this.cookiesPerHour[i]= Math.ceil(getRandomCustomersPerHour(this.minCust, this.maxCust) * this.averageCookies);
+  }
+};
 
-//step 2 Constructer Function
+
+
+let tHead = document.createElement('tr');
+parentElement.appendChild(tHead);
+let tableHeadLocationName = document.createElement('th');
+tableHeadLocationName.textContent='Places';
+tHead.appendChild(tableHeadLocationName);
+//getting hours
+
+for(let i =0; i< hours.length; i++){
+  let tableHeadHours = document.createElement('th');
+  tableHeadHours.textContent = hours[i];
+  tHead.appendChild(tableHeadHours);
+}
+
+let seattle = new Store('Seattle', 23, 65, 6.3);
+let tokyo = new Store('Tokyo',3,24,1.2 );
+let dubai = new Store('Dubai',11,38,3.7);
+let paris = new Store('Paris',20,38,2.3);
+let lima = new Store('Lima',2,16,4.6);
+
+
+
+
+Store.prototype.renderStoreInfo = function(){
+  this.cookiesBought();
+
+  let storeNameRow = document.createElement('tr');
+  parentElement.appendChild(storeNameRow);
+
+
+  let storeHead=document.createElement('th');
+  storeHead.textContent= this.storeLocation;
+  storeNameRow.appendChild(storeHead);
+
+  for(let i = 0; i < hours.length; i++){
+
+    this.totalDailyCookies += this.cookiesPerHour[i];
+    console.log(this.cookiesPerHour);
+    let storeDataCell = document.createElement('td');
+    storeDataCell.textContent= this.cookiesPerHour[i];
+    storeNameRow.appendChild(storeDataCell);
+  }
+  let headingTotal = document.createElement('td');
+  headingTotal.textContent = this.totalDailyCookies;
+  storeNameRow.appendChild('headingTotal');
+};//end main render()
+
+
+// start footer render()
+
+Store.prototype.renderFooter= function(){
+  let tFoot = document.getElementById('tableFooter');
+  let footerRow = document.createElement('tr');
+  let totalTitle = document.createElement('th');
+  totalTitle.textContent = 'Total';
+  footerRow.appendChild(totalTitle);
+
+
+  let grandTotal = 0;
+  for(let i = 0; i < hours.length; i++){
+    let hourlyTotal = 0;
+
+    for(let j = 0; j < allStores.length; j++){
+      hourlyTotal = hourlyTotal + allStores[j].cookiesPerHour[i];
+    }
+    grandTotal += hourlyTotal;
+    let hourlyTotalTd = document.createElement('td');
+    hourlyTotalTd.textContent = hourlyTotal;
+    tFoot.appendChild(hourlyTotalTd);
+  }
+
+let grandTotalRow = documen
+
+
+  let allStores = [seattle,tokyo,dubai,paris,lima];
+  for(let i = 0; i<allStores.length; i++){
+    allStores[i].renderStoreInfo();
+  }
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function allowSubmit(evt){
+//   evt.preventDefault();
+//   // retrieving form id's and connecting them to javascript counteparts.
+//   let storeLocation = document.getElementById ('storeLocation').value;
+//   let minimumCust = document.getElementById('minimumCust').value;
+//   let maximumCust = document.getElementById('maximumCust').value;
+//   let avgCookPerCust = document.getElementById ('avgCookPerCust').value;
+
+//   let storePlace  = new Store(storeLocation , minimumCust, maximumCust, avgCookPerCust);
+//   // adding new stores to table
+//   storePlaces.push(storePlace);
+//   Store.renderAll();
+// }
+
+
+
 /**
  *
- * @param {string} storeLocation - this is the name of a city
- * @param {number} minimumCust
- * @param {number} maximumCust
- * @param {number} avgCookPerCust
  */
-function Store(storeLocation , minimumCust, maximumCust, avgCookPerCust){
-  this.storeLocation = storeLocation;
-  this.minCust = minimumCust;
-  this.maxCust = maximumCust;
-  this.avgCookPerCust = avgCookPerCust;
-  this.cookiesSold =[];
-  this.numOfCookiesPerHour();
-  Store.storeSites.push(this);
-}
+// function addLocation(event) {
+//   event.preventDefault();
+//   console.log('In addLocation()');
+//   let good = true; // flags whether the form input is good
+//   let storeLocation = document.getElementById('storeLocation').value.trim();
+//   if (storeLocation === '') {
+//     // Name is required!
+//     good = false;
+//     let span = document.getElementById('storeLocationError');
+//     span.innerText = 'Location cannot be blank!';
+//     let br = document.createElement('br');
+//     span.appendChild(br);
+//   }
+//   let minimumCust = document.getElementById('minimumCust').value;
+//   minimumCust = minimumCust.trim();
+//   let maximumCust = document.getElementById('maximumCustomer');
+//   let avgCookPerCust = document.getElementById('average cookies per customer');
+//   if (good) {
+//     let store = new Store(storeLocation , minimumCust, maximumCust, avgCookPerCust);
+//     form.reset();
+//     storePlaces.push(store);
+//     render(store);
 
-Store.storeSites=[];//not in a function
+//   }
+// }
 
 /**
- * 
+ *
  */
-Store.prototype.numOfCookiesPerHour = function(){
-  for(let i=0; i < storeHours.length; i++){
-    this.cookiesSold[i]= Math.ceil(this.getRandomCustomersPerHour()* this.avgCookPerCust);
-  }
-};
-
-/**
- * 
- * 
- */
-Store.prototype.getRandomCustomersPerHour= function(){
-  return Math.ceil(Math.random()* (this.maxCust- this.minCust)*this.minCust);
-};// end constructor
 
 
 
-/**
- * 
- */
-function initialize(){
-  console.log('In initialize()');
-  //stores that can cause the old ones to be cleared out?
-  storePlaces =[];
-
-  render(storePlaces);
-  // finding the survey form id in survey html, adding submit button which comes with event listener
-  let form = document.getElementById('storeForm');
-  form.addEventListener('submit', allowSubmit);
-  let seattle = new Store('Seattle', 23, 65, 6.3);
-  let tokyo = new Store('Tokyo',3,24,1.2 );
-  let dubai = new Store('Dubai',11,38,3.7);
-  let paris = new Store('Paris',20,38,2.3);
-  let lima = new Store('Lima',2,16,4.6);
-  let allStores = [seattle,tokyo,dubai,paris,lima];
-  console.log('Our Stores', allStores);
-  Store.renderAll();
-
-}
 
 
-// stop submit button from submitting
-/**
- * 
- * @param {*} evt 
- */
-function allowSubmit(evt){
-  evt.preventDefault();
-  // retrieving form id's and connecting them to javascript counteparts.
-  let storeLocation = document.getElementById ('storeLocation').value;
-  let minimumCust = document.getElementById('minimumCust').value;
-  let maximumCust = document.getElementById('maximumCust').value;
-  let avgCookPerCust = document.getElementById ('avgCookPerCust').value;
-
-  let storePlace  = new Store(storeLocation , minimumCust, maximumCust, avgCookPerCust);
-  // adding new stores to table
-  storePlaces.push(storePlace);
-  Store.renderAll();
-}
 
 
-// render survey function
-
-/**
- * 
- * @param {*} storePlaces 
- */
-function render(storePlaces){
-  let locationTable = document.getElementById('locationTable');
-  // clears out old and reloads new records
-  locationTable. innerHTML =' ';
-  // draws records into empty string
-
-  // loop through storeplaces
-  for (let i = 0; i< storePlaces.length; i++){
-    let storePlace = storePlaces[i];
-    let tr = document.createElement('tr');
-    let td = document.createElement('td');
-    td.innerText = storePlace.storeLocation;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.innerText = storePlace.minimumCust;
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.innerText = storePlace.maximumCust(', ');
-    tr.appendChild(td);
-    td = document.createElement('td');
-    td.innerText = storePlace.avgCookPerCust;
-    tr.appendChild(td);
-  }
-}
-//end
 
 
-// Render Function
 
-/**
- * 
- */
-Store.prototype.render = function(){
-  let cookieTotal= 0;
-  let tbody = document.getElementById ('dataOfStore');
-  let tr =document.createElement('tr');
-  tbody.appendChild (tr);
 
-  // adding table data using store locations
-  let tdStoreLocation = document.createElement('td');
-  tdStoreLocation.textContent = this.storeLocation;
-  console.log(this.storeLocation);
-  tr.appendChild(tdStoreLocation);
-
-  // store hours
-  for(let i = 0; i < storeHours.length; i++){
-    let cookiesForThisHour = this.cookiesSold[i];
-    cookiesTotalHour[i] += cookiesForThisHour;
-    cookieTotal += cookiesForThisHour;
-
-    let cookieHourlyData = document.createElement('td');
-    cookieHourlyData.textContent = cookiesForThisHour;
-    tr.appendChild(cookieHourlyData);
-  }
-  let cookieTotals = document.createElement('td');
-  cookieTotals.textContent = cookieTotal;
-  tr. appendChild(cookieTotals);
-};//end render()
-
-// Add Button Function
-
-/**
- * 
- */
-function addLocation(evt) {
-  evt.preventDefault();
-  console.log('In addLocation()');
-  let good = true; // flags whether the form input is good
-  let storeLocation = document.getElementById('storeLocation').value.trim();
-  if (storeLocation === '') {
-    // Name is required!
-    good = false;
-    let span = document.getElementById('storeLocationError');
-    span.innerText = 'Location cannot be blank!';
-    let br = document.createElement('br');
-    span.appendChild(br);
-  }
-  let minimumCust = document.getElementById('minimumCust').value;
-  minimumCust = minimumCust.trim();
-  let maximumCust = document.getElementById('maximumCustomer');
-  let avgCookPerCust = document.getElementById('average cookies per customer');
-  if (good) {
-    let store = new Store(storeLocation , minimumCust, maximumCust, avgCookPerCust);
-    storePlaces.push(store);
-    render(store);
-
-  }
-}
-
-/**
- * 
- */
-Store.renderAll= function(){
-  let tbody = document.getElementById ('dataOfStore');
-  tbody.innerHTML= "";
-  for(let i = 0; i < Store.storeSites.length; i++){
-    Store.storeSites[i].render();
-  }
-
-  hourlyStoreTotalFooter();
-};

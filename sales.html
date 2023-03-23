@@ -10,7 +10,6 @@
 
 </head>
 
-<body onload ="initialize()">
   
   <header>
     <h1> <img src="images/salmon.png" alt = "salmon" /> Salmon Cookies</h1>
@@ -25,17 +24,7 @@
       </nav>
   </header>
   <main>
-    <h2> Location Data</h2>
 
-    <table>
-        <thead>
-        <tr>
-            <th> Add a Location! </th>
-            
-        </tr>
-        </thead>
-        <tbody id = "locationTable"></tbody>
-    </table>
           <section>
               <form id = "storeForm">
                 <label for = 'storeLocation'>Location *</label><br/>
@@ -52,55 +41,27 @@
                 <input type=" text" id="avgCookPerCust" name="avgCookPerCust" /> <br/>
                 <input type="submit" value="AddLocation"  /><br />
 
+                <div>
+                  <button type ="reset" value ="reset"> Reset Form</button>
+                </div>
+
 
               </form> 
                 
     
     <img src ="images/chinook.jpg" id="chinook" alt ="chinook fish"/>
     <section id='container'>
-            <table id = 'salesTable' class = "customers">
-                <thead>
-                    <tr>
-                        <td></td>
-                        <td>6am</td>
 
-                        <td>7am</td>
+      <h2 id ="Locations"> Location Data</h2>
 
-                        <td>8am</td>
 
-                        <td>9am</td>
+            <table id = "store-location-data">
 
-                        <td>10am</td>
 
-                        <td>11am</td> 
 
-                        <td>12pm</td>
 
-                        <td>1pm</td>
-
-                        <td>2pm</td>
-
-                        <td>3pm</td>
-
-                        <td>4pm</td>
-
-                        <td>5pm</td>
-
-                        <td>6pm</td>
-
-                        <td>7pm</td>
-
-                        <td>8pm</td>
-
-                        <td>Daily Totals</td>
-                    </tr>
-                </thead>
-                <tbody id="dataOfStore">
-                  
-                
-                
-                </tbody>
-                  
+            </table> 
+               
                 
             
                 
