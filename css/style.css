@@ -4,106 +4,134 @@
 }
 
 
-h1{
-    font-family: 'League Gothic', sans-serif;
+h1 {
+    font-family: 'League Gothic';
     text-align: center;
-    background-color:aquamarine;
-    border: solid rgb(185, 102, 8);
+    background-color: rgb(221, 230, 233);
+    background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYZ5En3xllAjSg39OOjBOCLi2_ah8NgthVlipdpg6crYPC3hZ93VjGSImepBc990NHKoY&usqp=CAU");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: solid rgb(0, 138, 92);
     border-width: 10px;
 }
 
-h2{
+h2 {
     font-family: 'League Gothic', sans-serif;
     float: left;
-    
+
 
 
 }
 
-body { 
-    background-color:bisque;
-   
+body {
+    background-color: rgb(84, 206, 175)
 }
 
 main {
     width: 960px;
     margin: 0 auto;
-  
+    background-color: lightblue;
+
+
+
 }
 
- p {
+p {
     font-family: Arial, Helvetica, sans-serif;
-    width:50%;
-    
+    width: 50%;
+    color: black;
+
 }
 
- button{
-position:relative;
-width:10%;
-} 
-
-
-header  {
-width:100%;
-background-color: rgb(4, 78, 4);
-/* display: flex; */
-/* justify-content:space-between; */
+button {
+    position: relative;
+    width: 10%;
 }
+
 
 
 nav {
-    background-color: rgb(201, 139, 57);
-    color:rgb(65, 125, 177);   
+    background-color: rgb(46, 167, 175);
+   
+}
+
+nav a {
+    text-decoration: none;
 }
 
 
 nav li {
-font-family: Verdana, Geneva, Tahoma, sans-serif;   
-display: inline-block;
-text-align: center;
-border: 3px solid rgb(20, 20, 20);
-margin:50px;
-} 
-h1 img  {
-    max-width:10%;  
-    height: auto;  
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: inline-block;
+    text-align: center;
+    border: 3px solid rgb(20, 20, 20);
+    margin: 50px;
+    text-decoration: none;
 }
-#chinook{
-    max-width:60%;  
-    height: auto; 
- 
-   
-    
+
+.icon {
+    max-width: 10%;
+    height: auto;
+    float: left;
+    margin-left: 0px 0px 0px 30px;
+    width: 150px;
+    height: 38px;
 }
-table, th, td {
-    border: 1px solid;
-  }
 
 
- 
+
+#wave {
+    width: auto;
+    height: 100%;
+
+
+
+}
+
+table,
+th,
+td {
+    border: 2px solid;
+    width: auto;
+}
+
+
+
 footer {
-height:70px;
-background-color: rgb(4, 78, 4); 
+
+    bottom: 0;
+    width: 10%;
+    height: 2.5rem;
 }
 
-main img{
-    max-width:60%;  
-    height: auto; 
-    
+main img {
+    max-width: 60%;
+    height: auto;
+
 }
+
 /* Style inputs with type="text", select elements and textareas */
-input[type=text], select, textarea {
-    width: 100%; /* Full width */
-    padding: 12px; /* Some padding */ 
-    border: 1px solid #ccc; /* Gray border */
-    box-sizing: border-box; /* Make sure that padding and width stays in place */
-    margin-top: 6px; /* Add a top margin */
-    margin-bottom: 16px; /* Bottom margin */
-    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-  }
-  
-  /* Style the submit button with a specific background color etc */
-  input[type=submit] {
+input[type=text],
+select,
+textarea {
+    width: 100%;
+    /* Full width */
+    padding: 12px;
+    /* Some padding */
+    border: 1px solid #ccc;
+    /* Gray border */
+    box-sizing: border-box;
+    /* Make sure that padding and width stays in place */
+    margin-top: 6px;
+    /* Add a top margin */
+    margin-bottom: 16px;
+    /* Bottom margin */
+    resize: vertical
+        /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
     background-color: #034a30;
     color: white;
     padding: 15px 20px;
@@ -112,18 +140,18 @@ input[type=text], select, textarea {
     cursor: pointer;
     margin-top: 6px;
     margin-bottom: 16px;
-  }
-  
-  /* When moving the mouse over the submit button, add a darker green color */
-  input[type=submit]:hover {
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
     background-color: #08406d;
 
-   
-  }
-  
-  /* Add a background color and some padding around the form */
-  .container {
+
+}
+
+/* Add a background color and some padding around the form */
+.container {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-  }
+}
