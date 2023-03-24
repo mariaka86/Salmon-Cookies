@@ -1,8 +1,7 @@
 'use strict';
 console.log('js connected');
 let parentElement = document.getElementById('store-location-data');
-let hours = [ ' 6am ', ' 7am ', ' 8am ', ' 9am ', '10am', '11am','  12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '  7pm ', ' 8pm ' ,' Total'];
-// console.log(':rocket: ~ file: app.js:5 ~ hours:', hours);
+let hours = [ ' 6am ', ' 7am ', ' 8am ', ' 9am ', '10am', '11am','  12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '  7pm ', ' 8pm '];
 function Store(storeName,minCustomer,maxCustomer,averageCookies){
   this.storeName = storeName;
   this. minCustomer = minCustomer;
@@ -23,7 +22,7 @@ Store.prototype.setCookies = function () {
 let tHead = document.createElement('tr');
 parentElement.appendChild(tHead);
 let tableNameHead = document.createElement('th');
-tableNameHead.textContent = ('Places');
+tableNameHead.textContent = ('Locations');
 tHead.appendChild(tableNameHead);
 //getting the hours
 for(let i =0; i< hours.length; i++){
@@ -46,27 +45,25 @@ Store.prototype.render = function(){
     storeCell.textContent = this.cookiesPerHour[i];
     storeNameRow.appendChild(storeCell);
   }
-  let totalStoreCookies= document.createElement('td');
+  let totalStoreCookies= document.createElement('th');
   totalStoreCookies.textContent = this.totalDailyCookies;
   storeNameRow.appendChild(totalStoreCookies);
 };
+let totalHeading = document.createElement('th');
+totalHeading.textContent=('Total');
+tHead.appendChild(totalHeading);
+
+
 Store.prototype.renderFooter = function(){
-  let tFoot = document.getElementById('tableFooter');
-  console.log(':rocket: ~ file: app.js:69 ~ tFoot:', tFoot);
-  let footerRow = document.createElement('tr');
-  let totalId = document.createElement('th');
-  totalId.textContent = 'Total';
-  footerRow.appendChild(totalId);
+
+
+
   let grandTotal = 0;
   for(let i = 0; i < hours.length; i++){
     let hourlyTotal = 0;
     //go through the cities
     console.log(allStores);
     for(let j = 0; j < allStores.length; j++){
-      // console.log(allStores[j].cookieTotal[i]);
-      //add to my hourly  total the city total for that hour.
-      //we have two variable i and j, that are arrays.
-      //so go to the citys array and find the number for how many allStores[] which will have Seattl.... and we will look at the total for hour
       hourlyTotal = hourlyTotal + allStores[j].cookieTotal[i];
       console.log(':rocket: ~ file: app.js:87 ~ hourlyTotal:', hourlyTotal);
       //adding up the grand total
