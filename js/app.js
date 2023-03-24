@@ -121,6 +121,29 @@ for(let i = 0; i < allStores.length; i++){
 storeOne.renderFooter();
 
 
+function handleSubmit(event){
+  event.preventDefault();
 
 
+  const storeName = document.getElementById('storeName').value;
+  const minCustomer = parseInt(document.getElementById('minCustomer').value);
+  const maxCustomer = parseInt(document.getElementById('maxCustomer').value);
+  const averageCookies = parseInt(document.getElementById('averageCookies').value);
 
+  const newStore = new Store(storeName, minCustomer, maxCustomer, averageCookies, 0, []);
+  allStores.push(newStore);
+
+  newStore.render();
+
+  document.getElementById('tableFooter').innerHTML = '';
+  newStore.renderFooter();
+
+
+  event.target.reset();
+
+
+}
+
+
+const form = document.getElementById('storeForm');
+form.addEventListener('submit', handleSubmit);
